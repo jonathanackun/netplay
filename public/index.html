@@ -1,0 +1,47 @@
+<!doctype html>
+<html ng-app="gameApp">
+  <head>
+  	<meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="shortcut icon" type="image/png" href="../jasmine/lib/jasmine-2.5.2/jasmine_favicon.png">
+	<link rel="stylesheet" type="text/css" href="../jasmine/lib/jasmine-2.5.2/jasmine.css">
+
+	<script type="text/javascript" src="../jasmine/lib/jasmine-2.5.2/jasmine.js"></script>
+	<script type="text/javascript" src="../jasmine/lib/jasmine-2.5.2/jasmine-html.js"></script>
+	<script type="text/javascript" src="../jasmine/lib/jasmine-2.5.2/boot.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> 
+	<script src="js/ui-bootstrap-2.3.0.js"></script>
+    <script>
+	    $(".nav li").on("click", function() {
+	      $(".nav li").removeClass("active");
+	      $(this).addClass("active");
+	    });
+	</script>
+    <script src="js/core.js"></script>
+  </head>
+  <body ng-controller="mainController">
+    <div class="newContainer">
+    	<nav>
+			<ul id="nav" class="nav colourStyle nav-tabs">
+			  <li class="active nav-1"><a href="#" ng-click="filters.desktop_categories = 'All Games'">ALL GAMES</a></li>
+			  <li class="nav-1"><a href="#"  ng-click="filters.desktop_categories = 'Popular Games'">POPULAR GAMES</a></li>
+			  <li class="nav-1"><a href="#" ng-click="filters.desktop_categories = 'Slots'">SLOTS</a></li>
+			  <li class="nav-1"><a href="#" ng-click="filters.desktop_categories = 'Jackpots'">JACKPOTS</a></li>
+			  <li class="nav-1"><a href="#" ng-click="filters.desktop_categories = 'Blackjack'">BLACKJACK</a></li>
+			  <li class="nav-1"><input type="text" class="form-control" placeholder="Search" ng-model="searchBox" ng-minlength="2" name="q"></li>
+			</ul>
+		</nav>
+
+       <div class="row" id="center">        		
+			<div class="col-3-1 mobile" id="gameRow" ng-repeat="game in games | filter:searchBox | filter:filters">
+       			<img id="openModal" ng-src="{{game.image_180x100}}"> 
+       		</div>
+       		<div class="jumbotron" id="message" ng-show="(games| filter:searchBox).length == 0">NO RESULTS!</div>        		     	
+       </div>      
+    </div>
+    <script src="js/ui-bootstrap-2.3.0.js"></script>
+  </body>
+</html>
